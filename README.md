@@ -140,26 +140,10 @@ npm start
 
 App opens at `http://localhost:3000`
 
-### Demo Accounts
-| Clinician | Email | Password |
-|---|---|---|
-| Dr. Priya Sharma | priya@admri.in | doctor123 |
-| Dr. Arjun Mehta | arjun@admri.in | doctor456 |
-
 ### Enable AI Chat (optional)
 1. Get a free API key at [console.anthropic.com](https://console.anthropic.com)
 2. Open `src/config.js`
 3. Paste: `export const ANTHROPIC_API_KEY = "sk-ant-..."`
-
----
-
-## First Load
-
-1. App checks IndexedDB for saved models
-2. Not found → trains all 4 models (~60 seconds)
-3. Web Worker keeps UI responsive during training
-4. Models saved to IndexedDB
-5. All future loads → instant (<1 second)
 
 ---
 
@@ -246,22 +230,6 @@ Addresses target 3.4 by enabling earlier identification of adolescent mental hea
 **TRL 4 — Technology validated in lab**
 
 System correctly classifies risk tiers consistent with published PHQ-9/GAD-7 thresholds in controlled testing. Next step: prospective validation on real anonymised patient data under IRB approval.
-
----
-
-## Sprint Timeline
-
-| Sprint | Date | Deliverables |
-|---|---|---|
-| Sprint 1 | Feb 28, 2026 | Auth, patient registry, basic scoring, core UI |
-| Sprint 2 | Mar 22, 2026 | 4-model ensemble, analytics, PDF export, dashboard |
-| Sprint 3 | Apr 28–30, 2026 | Testing, validation, report, demo |
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
