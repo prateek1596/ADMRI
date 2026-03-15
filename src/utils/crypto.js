@@ -1,7 +1,4 @@
-/**
- * Browser-native SHA-256 hashing using Web Crypto API.
- * No external dependencies. Works in all modern browsers.
- */
+
 export async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data     = encoder.encode(password + "admri_salt_v1");

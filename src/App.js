@@ -37,7 +37,7 @@ export default function App() {
   const [showTimeoutWarn,  setShowTimeoutWarn]  = useState(false);
   const [lastActivity,     setLastActivity]     = useState(Date.now());
 
-  // ── Session timeout warning ─────────────────────────────────────────────────
+
   useEffect(() => {
     if (!auth) return;
     const interval = setInterval(() => {
