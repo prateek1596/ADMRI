@@ -18,7 +18,7 @@
 
 import * as tf from "@tensorflow/tfjs";
 import { CBT_LIBRARY } from "../data/seedData";
-import { generateClinicalDataset } from "./ClinicalDataset";
+import { generateHybridDataset } from "./ClinicalDataset";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const SAVE_KEYS = {
@@ -277,7 +277,7 @@ export class ADMRIMLEngine {
   // ── Training ───────────────────────────────────────────────────────────────
   async train(onProgress) {
     console.log("[ADMRI] Generating clinical dataset...");
-    const { xs, ys } = generateClinicalDataset(TRAIN_SAMPLES);
+    const { xs, ys } = generateHybridDataset(TRAIN_SAMPLES);
 
     // Prepare tensors
     const xAll = tf.tensor2d(xs);
