@@ -143,11 +143,10 @@ export function PatientDetailPage({
               cursor: "pointer", fontWeight: 700, fontSize: 11,
               background: `${T.safe}18`, color: T.safe,
             }}
-            onClick={() => exportPatientReport(
-              patient, notes,
-              getAssessmentHistory(patient.id),
-              doctorName || "Clinician",
-            )}
+            onClick={async () => {
+              const history = await getAssessmentHistory(patient.id);
+              exportPatientReport(patient, notes, history, doctorName || "Clinician");
+            }}
           >
             📄 Export PDF
           </button>
