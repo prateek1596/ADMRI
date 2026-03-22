@@ -1,0 +1,2 @@
+{"error":"SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string","level":"error","message":"Failed to start server","timestamp":"2026-03-19 13:35:30"}
+{"error":"SASL: SCRAM-SERVER-FIRST-MESSAGE: client password must be a string","level":"error","message":"Failed to start server","timestamp":"2026-03-19 13:35:49"}

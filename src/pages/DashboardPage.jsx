@@ -125,7 +125,7 @@ function TrendSummary({ patients, onSelectPatient }) {
 // ── Activity Feed ─────────────────────────────────────────────────────────────
 function ActivityFeed({ notes, patients }) {
   const recent = [...notes]
-    .sort((a, b) => b.date.localeCompare(a.date))
+    .sort((a, b) => new Date(b.created_at || b.date || 0) - new Date(a.created_at || a.date || 0))
     .slice(0, 8);
 
   const patMap = Object.fromEntries(patients.map(p => [p.id, p]));
