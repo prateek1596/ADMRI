@@ -46,3 +46,19 @@
 {"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Patient created","patientId":"e0b0cc29-7936-48b0-8051-1f15460889ef","timestamp":"2026-03-23 00:56:31"}
 {"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Email changed","newEmail":"priya@admri.in","timestamp":"2026-03-23 00:59:01"}
 {"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-23 00:59:09"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-23 08:08:58"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-23 08:08:58"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-23 08:09:30"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-23 08:12:55"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-23 08:12:55"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-23 08:22:21"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-23 08:22:21"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Patient created","patientId":"22207021-7224-4558-9b56-dc0c101d77b0","timestamp":"2026-03-23 08:23:44"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Patient deleted","patientId":"22207021-7224-4558-9b56-dc0c101d77b0","timestamp":"2026-03-23 08:28:10"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-23 08:28:48"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-23 08:28:48"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-23 09:44:52"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-23 09:44:52"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-23 09:45:10"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-23 09:48:55"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-23 09:48:55"}
