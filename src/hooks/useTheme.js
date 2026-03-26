@@ -2,22 +2,24 @@
 import { useState, useEffect, useCallback } from "react";
 import { applyTheme, getSavedTheme, saveTheme } from "../styles/theme";
 
+// Apply immediately before React renders — prevents flash of wrong theme
+const _initial = getSavedTheme();
+applyTheme(_initial);
+
 export function useTheme() {
-  const [mode,   setMode]   = useState(() => getSavedTheme());
-  const [isDark, setIsDark] = useState(false);
-  // themeKey forces child components to re-render when theme changes
+  const [mode,     setMode]     = useState(_initial);
   const [themeKey, setThemeKey] = useState(0);
 
   const apply = useCallback((m) => {
-    const dark = applyTheme(m);
-    setIsDark(dark);
-    // Bump key so React re-renders components that use T
+    applyTheme(m);
+    // Bump key so App re-renders and all T.xxx values refresh
     setThemeKey(k => k + 1);
   }, []);
 
+  // Re-apply whenever mode changes
   useEffect(() => { apply(mode); }, [mode, apply]);
 
-  // Follow OS changes when in system mode
+  // Follow OS preference changes when in system mode
   useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
     const handler = () => { if (mode === "system") apply("system"); };
@@ -28,7 +30,8 @@ export function useTheme() {
   function setTheme(newMode) {
     saveTheme(newMode);
     setMode(newMode);
+    apply(newMode);
   }
 
-  return { mode, isDark, setTheme, themeKey };
+  return { mode, setTheme, themeKey };
 }
