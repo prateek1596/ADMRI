@@ -1,5 +1,5 @@
 // src/styles/shared.js
-// All shared style builders — use CSS variables so they work in light + dark
+// All shared style objects use CSS variables directly
 
 export const inp = {
   width: "100%",
@@ -37,7 +37,7 @@ export function btn(variant = "", size = "md") {
   const base = {
     padding: size === "sm" ? "7px 14px" : "9px 18px",
     borderRadius: 10,
-    border: "none",
+    border: "1px solid var(--border)",
     cursor: "pointer",
     fontWeight: 700,
     fontSize: size === "sm" ? 12 : 13,
@@ -47,13 +47,8 @@ export function btn(variant = "", size = "md") {
     alignItems: "center",
     gap: 6,
   };
-
   if (variant === "primary") {
-    return {
-      ...base,
-      background: "var(--accent)",
-      color: "#fff",
-    };
+    return { ...base, background: "var(--accent)", color: "#ffffff", border: "none" };
   }
   if (variant === "danger") {
     return {
@@ -63,12 +58,7 @@ export function btn(variant = "", size = "md") {
       border: "1px solid color-mix(in srgb, var(--danger) 40%, transparent)",
     };
   }
-  return {
-    ...base,
-    background: "var(--surface)",
-    color: "var(--text)",
-    border: "1px solid var(--border)",
-  };
+  return { ...base, background: "var(--surface)", color: "var(--text)" };
 }
 
 export function tabBtn(active) {
@@ -82,7 +72,7 @@ export function tabBtn(active) {
     fontFamily: "'DM Sans', sans-serif",
     transition: "all 0.15s",
     background: active
-      ? "color-mix(in srgb, var(--accent) 18%, transparent)"
+      ? "color-mix(in srgb, var(--accent) 15%, transparent)"
       : "transparent",
     color: active ? "var(--accent)" : "var(--muted)",
   };
