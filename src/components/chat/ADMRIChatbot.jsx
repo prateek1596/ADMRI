@@ -199,7 +199,8 @@ export default function ADMRIChatbot({ patientName, riskScore, riskLevel }) {
             <div style={{
               maxWidth:"72%", padding:"10px 14px",
               borderRadius: msg.role==="user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-              background: msg.isCrisis ? "#2D0D0D"
+              background: msg.isCrisis
+                ? "color-mix(in srgb, var(--danger) 10%, var(--surface))"
                 : msg.role==="user" ? T.accent : T.botBubble,
               border: msg.isCrisis ? `1px solid ${T.danger}55`
                 : msg.role==="user" ? "none" : `1px solid ${T.border}`,
@@ -290,7 +291,7 @@ export default function ADMRIChatbot({ patientName, riskScore, riskLevel }) {
 
       {/* Crisis footer */}
       <div style={{
-        padding:"6px 14px",background:"#1A0D0D",
+        padding:"6px 14px",background:"color-mix(in srgb, var(--danger) 8%, var(--surface))",color:"var(--muted)",
         borderTop:`1px solid ${T.danger}33`,
         textAlign:"center",fontSize:11,color:"#6B4040",flexShrink:0,
       }}>
@@ -314,8 +315,8 @@ function BotAvatar() {
 }
 
 const T = {
-  accent:"#58A6FF", safe:"#3FB950", warn:"#E3B341", danger:"#F85149",
-  muted:"#8B949E", text:"#E6EDF3", border:"#21262D",
-  chatBg:"#0D1117", cardBg:"#161B22", botBubble:"#1C2128",
-  surface:"#21262D", inputBg:"#0D1117",
+  accent:"var(--accent)", safe:"var(--success)", warn:"var(--warning)", danger:"var(--danger)",
+  muted:"var(--muted)", text:"var(--text)", border:"var(--border)",
+  chatBg:"var(--card)", cardBg:"var(--card)", botBubble:"var(--surface)",
+  surface:"var(--surface)", inputBg:"var(--surface)",
 };
