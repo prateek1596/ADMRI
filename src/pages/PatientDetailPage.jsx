@@ -254,9 +254,13 @@ function OverviewTab({ patient, patNotes, mlState, latestScore, onGoAssess }) {
             — On-device · CBT-grounded · context-aware for {patient.name.split(" ")[0]}
           </span>
         </div>
-        <ADMRIChatbot patientName={patient.name} riskScore={latestScore}
-          riskLevel={latestScore!==undefined?mlEngine.classifyRisk(latestScore)?.label:undefined} />
-      </div>
+        <ADMRIChatbot
+          patientName={patient.name}
+          riskScore={latestScore}
+          riskLevel={latestScore !== undefined ? mlEngine.classifyRisk(latestScore)?.label : undefined}
+          domainProfile={patient.domainProfile}  // ← add this
+        />
+        </div>
     </motion.div>
   );
 }

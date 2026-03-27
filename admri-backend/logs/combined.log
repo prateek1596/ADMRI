@@ -94,3 +94,15 @@
 {"level":"info","message":"Database connected","timestamp":"2026-03-27 12:33:30"}
 {"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-27 12:33:30"}
 {"level":"info","message":"Database connected","timestamp":"2026-03-27 21:16:49"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-27 21:16:49"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-27 21:18:25"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-27 21:45:17"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-27 21:50:21"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-27 21:50:21"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 02:25:27"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 02:25:27"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Email changed","newEmail":"prateekyadav1596@gmail.com","timestamp":"2026-03-28 02:37:19"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-28 02:37:34"}
+{"level":"info","message":"Session scheduled","patientId":"2d5f6f1c-759b-4785-9994-fdea86c47977","scheduledAt":"2026-03-27T21:10:00.000Z","sessionId":"dc38b970-d465-4beb-bf79-29f4fa5fed8d","timestamp":"2026-03-28 02:38:26"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 02:42:03"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 02:42:03"}
