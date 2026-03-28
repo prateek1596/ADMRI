@@ -106,3 +106,29 @@
 {"level":"info","message":"Session scheduled","patientId":"2d5f6f1c-759b-4785-9994-fdea86c47977","scheduledAt":"2026-03-27T21:10:00.000Z","sessionId":"dc38b970-d465-4beb-bf79-29f4fa5fed8d","timestamp":"2026-03-28 02:38:26"}
 {"level":"info","message":"Database connected","timestamp":"2026-03-28 02:42:03"}
 {"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 02:42:03"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:08:36"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:08:36"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:13:20"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:13:20"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:13:40"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:13:40"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:13:51"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:13:51"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:14:16"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:14:16"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:17:37"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:17:38"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:18:44"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:18:44"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-28 08:18:48"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:19:32"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:19:32"}
+{"level":"info","message":"Session scheduled","patientId":"2d5f6f1c-759b-4785-9994-fdea86c47977","scheduledAt":"2026-03-28T02:51:00.000Z","sessionId":"8c0dee07-ec2b-41dc-8aa2-a032eaf0bd30","timestamp":"2026-03-28 08:20:14"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Rohan Desai","timestamp":"2026-03-28 08:20:19","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 08:21:56"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 08:21:56"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 09:11:58"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 09:11:58"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-28 09:12:06"}
+{"level":"info","message":"Database connected","timestamp":"2026-03-28 09:45:38"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-28 09:45:38"}
