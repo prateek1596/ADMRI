@@ -10,6 +10,7 @@ import {
 import { mlEngine, analyzeSentimentDetailed } from "../ml/ADMRIEngine";
 import { QUESTIONS, OPTIONS } from "../data/seedData";
 import { exportPatientReport } from "../utils/exportReport";
+import { CalibratedProbabilityDisplay } from "../ml/PlattCalibration";
 import ADMRIChatbot        from "../components/chat/ADMRIChatbot";
 import { SchedulePanel }      from "../components/features/SchedulePanel";
 import { TreatmentPlanPanel } from "../components/features/TreatmentPlanPanel";
@@ -567,8 +568,21 @@ function AssessTab({ patient, mlState, onRunAssessment }) {
             <div style={{...card,background:"var(--card)",border:"1px solid var(--border)"}}>
               <div style={SL}>ADMRI Score</div>
               <RiskGauge score={results.score} risk={results.risk}/>
-              <ConfidenceBar mean={results.confidence.mean} lower={results.confidence.lower}
-                upper={results.confidence.upper} std={results.confidence.std} confidence={results.confidence.confidence}/>
+              <ConfidenceBar 
+                mean={results.confidence.mean} 
+                lower={results.confidence.lower}
+                upper={results.confidence.upper} 
+                std={results.confidence.std} 
+                confidence={results.confidence.confidence}
+              />
+
+              <CalibratedProbabilityDisplay
+                rawScore={results.score}
+                confidenceInterval={results.confidence}
+                riskHistory={patient.riskHistory}
+                patientId={patient.id}
+              />
+
               <TrendChart history={results.history}/>
               <ForecastChart history={results.history} forecast={results.forecast}/>
             </div>
