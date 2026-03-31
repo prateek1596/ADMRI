@@ -1,5 +1,5 @@
-// src/App.js — mobile-responsive with collapsible sidebar
-import { useState, useEffect, useCallback } from "react";
+// src/App.js
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme }  from "./hooks/useTheme";
 import { useAuth }   from "./hooks/useAuth";
@@ -14,26 +14,29 @@ import { AuthPage }          from "./pages/AuthPage";
 import { AddNoteModal, AddPatientModal } from "./components/modals/Modals";
 
 export default function App() {
-  const { mode, setTheme, themeKey } = useTheme();
-  const { auth, patients, notes, ready, login, register, logout,
-          addPatient, pushRiskScore, removePatient, addNote,
-          removeNote, recordSession, saveFullAssessment, getAssessmentHistory } = useAuth();
+  const { mode, setTheme, themeKey }    = useTheme();
+  const {
+    auth, patients, notes, ready,
+    login, register, logout,
+    addPatient, pushRiskScore, removePatient,
+    addNote, removeNote, recordSession,
+    saveFullAssessment, getAssessmentHistory,
+  } = useAuth();
   const mlState = useML(auth);
   const { isMobile, isTablet, sidebarWidth } = useMobile();
 
-  const [view,       setView]       = useState("dashboard");
-  const [selPat,     setSelPat]     = useState(null);
-  const [showAddPat, setShowAddPat] = useState(false);
-  const [showAddNote,setShowAddNote]= useState(false);
-  const [sidebarOpen,setSidebarOpen]= useState(false); // mobile drawer state
+  const [view,        setView]        = useState("dashboard");
+  const [selPat,      setSelPat]      = useState(null);
+  const [showAddPat,  setShowAddPat]  = useState(false);
+  const [showAddNote, setShowAddNote] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Close sidebar on navigation (mobile)
   function navigate(v) {
     setView(v);
     if (isMobile) setSidebarOpen(false);
   }
 
-  // Keyboard shortcut
+  // Keyboard shortcuts
   useEffect(() => {
     function handler(e) {
       if ((e.ctrlKey || e.metaKey) && e.key === "b") { e.preventDefault(); setShowAddNote(true); }
@@ -43,247 +46,269 @@ export default function App() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
-  // Close sidebar on outside tap (mobile)
+  // Close mobile sidebar on outside tap
   useEffect(() => {
     if (!isMobile || !sidebarOpen) return;
-    function handler(e) {
+    function close(e) {
       if (!e.target.closest("[data-sidebar]")) setSidebarOpen(false);
     }
-    document.addEventListener("mousedown", handler);
-    document.addEventListener("touchstart", handler);
+    document.addEventListener("mousedown", close);
+    document.addEventListener("touchstart", close, { passive: true });
     return () => {
-      document.removeEventListener("mousedown", handler);
-      document.removeEventListener("touchstart", handler);
+      document.removeEventListener("mousedown", close);
+      document.removeEventListener("touchstart", close);
     };
   }, [isMobile, sidebarOpen]);
 
   if (!ready) return (
-    <div style={{ minHeight:"100vh", display:"flex", alignItems:"center",
-      justifyContent:"center", background:"var(--bg)", color:"var(--muted)",
-      fontFamily:"'DM Sans',sans-serif", fontSize:14 }}>
+    <div style={{
+      minHeight: "100vh", display: "flex", alignItems: "center",
+      justifyContent: "center", background: "var(--bg)",
+      color: "var(--muted)", fontFamily: "'DM Sans',sans-serif", fontSize: 14,
+    }}>
       Loading ADMRI…
     </div>
   );
 
   if (!auth) return <AuthPage onLogin={login} onRegister={register} />;
 
-  const mainPad   = isMobile ? "12px" : isTablet ? "18px 20px" : "24px 28px";
-  const mainLeft  = isMobile ? 0 : sidebarWidth;
+  const sidebarProps = {
+    auth, patients, notes,
+    view, selPat,
+    onNav:             navigate,
+    onSelectPatients:  () => navigate("patients"),
+    onSelectDashboard: () => navigate("dashboard"),
+    onLogout:          logout,
+    onViewProfile:     () => navigate("profile"),
+    mlState, themeMode: mode, onSetTheme: setTheme,
+  };
 
   return (
-    <div key={themeKey} style={{ minHeight:"100vh", background:"var(--bg)",
-      fontFamily:"'DM Sans',sans-serif" }}>
+    <div key={themeKey} style={{ minHeight: "100vh", background: "var(--bg)",
+      fontFamily: "'DM Sans',sans-serif" }}>
 
-      {/* ── Mobile top bar ── */}
+      {/* ── Mobile top bar ──────────────────────────────────────────────── */}
       {isMobile && (
         <div style={{
-          position:"sticky", top:0, zIndex:100,
-          background:"var(--surface)", borderBottom:"1px solid var(--border)",
-          padding:"0 16px", height:52,
-          display:"flex", alignItems:"center", justifyContent:"space-between",
+          position: "sticky", top: 0, zIndex: 100,
+          background: "var(--surface)", borderBottom: "1px solid var(--border)",
+          padding: "0 16px", height: 52,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
-          <button onClick={()=>setSidebarOpen(v=>!v)}
-            data-sidebar
-            style={{ background:"none", border:"none", cursor:"pointer",
-              padding:"8px 4px", color:"var(--text)" }}>
+          <button data-sidebar onClick={() => setSidebarOpen(v => !v)}
+            style={{ background: "none", border: "none", cursor: "pointer",
+              padding: "8px 4px", color: "var(--text)" }}>
             <HamburgerIcon open={sidebarOpen} />
           </button>
-          <div style={{ fontFamily:"'Syne',sans-serif", fontWeight:800,
-            fontSize:17, color:"var(--text)", letterSpacing:-0.5 }}>
-            ADMRI<span style={{ color:"var(--accent)" }}>.</span>
+          <div style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800,
+            fontSize: 18, color: "var(--text)", letterSpacing: -0.5 }}>
+            ADMRI<span style={{ color: "var(--accent)" }}>.</span>
           </div>
-          <button onClick={()=>setShowAddPat(true)}
-            style={{ background:"var(--accent)", border:"none", cursor:"pointer",
-              borderRadius:8, padding:"6px 12px", color:"#fff",
-              fontWeight:700, fontSize:12, fontFamily:"'DM Sans',sans-serif" }}>
+          <button onClick={() => setShowAddPat(true)}
+            style={{ background: "var(--accent)", border: "none", cursor: "pointer",
+              borderRadius: 8, padding: "6px 12px", color: "#fff",
+              fontWeight: 700, fontSize: 12, fontFamily: "'DM Sans',sans-serif" }}>
             + Patient
           </button>
         </div>
       )}
 
-      {/* ── Sidebar — drawer on mobile, fixed on desktop ── */}
+      {/* ── Sidebar ─────────────────────────────────────────────────────── */}
       {isMobile ? (
         <>
           {/* Backdrop */}
           <AnimatePresence>
             {sidebarOpen && (
-              <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }}
-                style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.5)", zIndex:149 }}
-                onClick={()=>setSidebarOpen(false)} />
+              <motion.div
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                onClick={() => setSidebarOpen(false)}
+                style={{ position: "fixed", inset: 0,
+                  background: "rgba(0,0,0,0.5)", zIndex: 149 }}
+              />
             )}
           </AnimatePresence>
-          {/* Drawer */}
-          <motion.div data-sidebar
-            initial={{ x:-280 }} animate={{ x: sidebarOpen ? 0 : -280 }}
-            transition={{ type:"tween", duration:0.22 }}
-            style={{ position:"fixed", top:0, left:0, bottom:0, zIndex:150,
-              width:260, overflowY:"auto" }}>
-            <Sidebar
-              auth={auth} patients={patients} notes={notes}
-              view={view} selPat={selPat}
-              onNav={navigate}
-              onSelectPatients={()=>navigate("patients")}
-              onSelectDashboard={()=>navigate("dashboard")}
-              onLogout={logout}
-              onViewProfile={()=>navigate("profile")}
-              mlState={mlState} themeMode={mode} onSetTheme={setTheme}
-            />
+
+          {/* Drawer — SCROLLABLE */}
+          <motion.div
+            data-sidebar
+            initial={false}
+            animate={{ x: sidebarOpen ? 0 : -270 }}
+            transition={{ type: "tween", duration: 0.22 }}
+            style={{
+              position: "fixed", top: 0, left: 0, bottom: 0, zIndex: 150,
+              width: 260,
+              overflowY: "auto",   // ← KEY FIX: sidebar scrolls internally
+              overflowX: "hidden",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            <Sidebar {...sidebarProps} />
           </motion.div>
         </>
       ) : (
-        <div style={{ position:"fixed", top:0, left:0, bottom:0, zIndex:50 }}>
-          <Sidebar
-            auth={auth} patients={patients} notes={notes}
-            view={view} selPat={selPat}
-            onNav={navigate}
-            onSelectPatients={()=>navigate("patients")}
-            onSelectDashboard={()=>navigate("dashboard")}
-            onLogout={logout}
-            onViewProfile={()=>navigate("profile")}
-            mlState={mlState} themeMode={mode} onSetTheme={setTheme}
-          />
+        /* Desktop/tablet — fixed sidebar */
+        <div style={{ position: "fixed", top: 0, left: 0, bottom: 0,
+          zIndex: 50, overflowY: "auto", overflowX: "hidden",
+          width: sidebarWidth }}>
+          <Sidebar {...sidebarProps} />
         </div>
       )}
 
-      {/* ── Main content ── */}
+      {/* ── Main content ────────────────────────────────────────────────── */}
       <div style={{
-        marginLeft: mainLeft,
+        marginLeft: isMobile ? 0 : sidebarWidth,
         minHeight: isMobile ? "calc(100vh - 52px)" : "100vh",
+        paddingBottom: isMobile ? 64 : 0, // space for bottom nav
         transition: "margin-left 0.2s",
       }}>
-        {/* Top bar (desktop only) */}
+
+        {/* Desktop top bar */}
         {!isMobile && (
           <div style={{
-            padding:"0 28px", height:56,
-            background:"var(--surface)", borderBottom:"1px solid var(--border)",
-            display:"flex", alignItems:"center", justifyContent:"space-between",
-            position:"sticky", top:0, zIndex:40,
+            padding: "0 28px", height: 56,
+            background: "var(--surface)", borderBottom: "1px solid var(--border)",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            position: "sticky", top: 0, zIndex: 40,
           }}>
-            <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-              {selPat && view === "patient" && (
+            <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--muted)" }}>
+              {view === "dashboard" && "Dashboard"}
+              {view === "patients"  && "Patient Registry"}
+              {view === "profile"   && "My Profile"}
+              {view === "patient" && selPat && (
                 <>
-                  <span style={{ fontSize:13, color:"var(--muted)" }}>{selPat.name}</span>
-                  <span style={{ color:"var(--border)" }}>·</span>
-                  <span style={{ fontSize:12, color:"var(--muted)" }}>{selPat.diagnosis}</span>
-                  <span style={{ color:"var(--border)" }}>·</span>
-                  <span style={{ fontSize:12, color:"var(--muted)" }}>Age {selPat.age}</span>
+                  <span>{selPat.name}</span>
+                  <span style={{ color: "var(--border)" }}>·</span>
+                  <span style={{ fontSize: 12 }}>{selPat.diagnosis}</span>
+                  <span style={{ color: "var(--border)" }}>·</span>
+                  <span style={{ fontSize: 12 }}>Age {selPat.age}</span>
                 </>
               )}
-              {view === "dashboard" && <span style={{ fontSize:13, color:"var(--muted)" }}>Dashboard</span>}
-              {view === "patients"  && <span style={{ fontSize:13, color:"var(--muted)" }}>Patient Registry</span>}
             </div>
-            <div style={{ display:"flex", gap:8, alignItems:"center" }}>
-              <span style={{ fontSize:11, color:"var(--muted)" }}>Ctrl+N: New Patient</span>
-              <button onClick={()=>setShowAddNote(true)} style={{
-                padding:"6px 12px", borderRadius:8, border:"none", cursor:"pointer",
-                background:"var(--surface)", color:"var(--muted)",
-                fontSize:12, fontWeight:600, fontFamily:"'DM Sans',sans-serif",
-                borderLeft:"1px solid var(--border)",
-              }}>+ Add Note</button>
-              <button onClick={()=>setShowAddPat(true)} style={{
-                padding:"6px 14px", borderRadius:8, border:"none", cursor:"pointer",
-                background:"var(--accent)", color:"#fff",
-                fontSize:12, fontWeight:700, fontFamily:"'DM Sans',sans-serif",
-              }}>+ Add Patient</button>
-              {view === "patient" && (
-                <button onClick={()=>{ mlState.retrain?.(); }} style={{
-                  padding:"6px 12px", borderRadius:8, cursor:"pointer",
-                  border:"1px solid var(--border)", background:"var(--surface)",
-                  color:"var(--muted)", fontSize:11, fontWeight:600,
-                  fontFamily:"'DM Sans',sans-serif",
-                }}>↺ Retrain ML</button>
-              )}
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <span style={{ fontSize: 11, color: "var(--muted)" }}>Ctrl+N: New Patient</span>
+              <button onClick={() => setShowAddNote(true)}
+                style={{ padding: "6px 12px", borderRadius: 8,
+                  border: "1px solid var(--border)", background: "var(--surface)",
+                  color: "var(--muted)", fontSize: 12, fontWeight: 600,
+                  fontFamily: "'DM Sans',sans-serif", cursor: "pointer" }}>
+                + Note
+              </button>
+              <button onClick={() => setShowAddPat(true)}
+                style={{ padding: "6px 14px", borderRadius: 8, border: "none",
+                  background: "var(--accent)", color: "#fff",
+                  fontSize: 12, fontWeight: 700,
+                  fontFamily: "'DM Sans',sans-serif", cursor: "pointer" }}>
+                + Patient
+              </button>
             </div>
           </div>
         )}
 
-        {/* Page content */}
-        <div style={{ padding: mainPad }}>
+        {/* Page */}
+        <div style={{ padding: isMobile ? "14px" : isTablet ? "18px 20px" : "24px 28px" }}>
           <AnimatePresence mode="wait">
+
             {view === "dashboard" && (
               <DashboardPage key="dash"
-                auth={auth} patients={patients} notes={notes}
-                mlState={mlState}
-                onSelectPatient={(p)=>{ setSelPat(p); navigate("patient"); }}
-                onAddPatient={()=>setShowAddPat(true)}
+                auth={auth} patients={patients} notes={notes} mlState={mlState}
+                onSelectPatient={p => { setSelPat(p); navigate("patient"); }}
+                onAddPatient={() => setShowAddPat(true)}
               />
             )}
+
             {view === "patients" && (
               <PatientsPage key="pats"
                 patients={patients} notes={notes}
-                onSelectPatient={(p)=>{ setSelPat(p); navigate("patient"); }}
-                onAddPatient={()=>setShowAddPat(true)}
+                onSelectPatient={p => { setSelPat(p); navigate("patient"); }}
+                onAddPatient={() => setShowAddPat(true)}
               />
             )}
+
             {view === "patient" && selPat && (
               <PatientDetailPage key={`pd-${selPat.id}`}
                 patient={selPat} notes={notes} mlState={mlState}
-                onAddNote={()=>setShowAddNote(true)}
-                onBack={()=>navigate("patients")}
-                onRunAssessment={async (pid, score, snap)=>{
+                onAddNote={() => setShowAddNote(true)}
+                onBack={() => navigate("patients")}
+                onRunAssessment={async (pid, score, snap) => {
                   await pushRiskScore(pid, score);
                   await saveFullAssessment(pid, snap);
-                  setSelPat(p => p?.id===pid ? { ...p, riskHistory:[...(p.riskHistory||[]),score] } : p);
+                  setSelPat(p => p?.id === pid
+                    ? { ...p, riskHistory: [...(p.riskHistory || []), score] }
+                    : p);
                 }}
-                onRemovePatient={async (pid)=>{
+                onRemovePatient={async pid => {
                   await removePatient(pid);
                   navigate("patients");
                 }}
-                onRemoveNote={async (pid,nid)=>{ await removeNote(pid,nid); }}
+                onRemoveNote={async (pid, nid) => removeNote(pid, nid)}
                 getAssessmentHistory={getAssessmentHistory}
                 doctorName={auth?.doctor?.name || auth?.name}
               />
             )}
+
+            {/* ── ProfilePage — pass ALL required props ── */}
             {view === "profile" && (
-              <ProfilePage key="prof" auth={auth} onBack={()=>navigate("dashboard")} />
+              <ProfilePage key="prof"
+                auth={auth}
+                patients={patients || []}   // ← guard against undefined
+                notes={notes || []}         // ← guard against undefined
+                onLogout={logout}
+                onBack={() => navigate("dashboard")}
+                themeMode={mode}
+                onSetTheme={setTheme}
+              />
             )}
+
           </AnimatePresence>
         </div>
       </div>
 
-      {/* ── Mobile bottom nav ── */}
+      {/* ── Mobile bottom nav ─────────────────────────────────────────────── */}
       {isMobile && (
-        <div style={{
-          position:"fixed", bottom:0, left:0, right:0, zIndex:90,
-          background:"var(--surface)", borderTop:"1px solid var(--border)",
-          display:"flex", height:56,
+        <nav style={{
+          position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 90,
+          background: "var(--surface)", borderTop: "1px solid var(--border)",
+          display: "flex", height: 58,
+          paddingBottom: "env(safe-area-inset-bottom, 0px)", // iOS safe area
         }}>
           {[
-            { id:"dashboard", icon:"🏠", label:"Home" },
-            { id:"patients",  icon:"👥", label:"Patients" },
-            { id:"patient",   icon:"🧠", label:"Current",  disabled:!selPat },
+            { id: "dashboard", emoji: "🏠", label: "Home" },
+            { id: "patients",  emoji: "👥", label: "Patients" },
+            { id: "patient",   emoji: "🧠", label: "Patient", disabled: !selPat },
           ].map(tab => (
             <button key={tab.id}
               disabled={tab.disabled}
-              onClick={()=>{ if(!tab.disabled) navigate(tab.id); }}
-              style={{ flex:1, display:"flex", flexDirection:"column",
-                alignItems:"center", justifyContent:"center", gap:3,
-                background:"none", border:"none", cursor:tab.disabled?"not-allowed":"pointer",
-                opacity:tab.disabled?0.35:1 }}>
-              <span style={{ fontSize:18 }}>{tab.icon}</span>
-              <span style={{ fontSize:10, fontWeight:600,
-                color:view===tab.id?"var(--accent)":"var(--muted)",
-                fontFamily:"'DM Sans',sans-serif" }}>
-                {tab.label}
-              </span>
+              onClick={() => { if (!tab.disabled) navigate(tab.id); }}
+              style={{
+                flex: 1, display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: 3,
+                background: "none", border: "none",
+                cursor: tab.disabled ? "not-allowed" : "pointer",
+                opacity: tab.disabled ? 0.3 : 1,
+              }}>
+              <span style={{ fontSize: 20 }}>{tab.emoji}</span>
+              <span style={{
+                fontSize: 10, fontWeight: 600, fontFamily: "'DM Sans',sans-serif",
+                color: view === tab.id ? "var(--accent)" : "var(--muted)",
+              }}>{tab.label}</span>
             </button>
           ))}
-        </div>
+        </nav>
       )}
 
-      {/* ── Modals ── */}
+      {/* ── Modals ───────────────────────────────────────────────────────── */}
       <AnimatePresence>
         {showAddPat && (
           <AddPatientModal
-            onSave={async (data)=>{ await addPatient(data); setShowAddPat(false); }}
-            onClose={()=>setShowAddPat(false)}
+            onSave={async data => { await addPatient(data); setShowAddPat(false); }}
+            onClose={() => setShowAddPat(false)}
           />
         )}
         {showAddNote && selPat && (
           <AddNoteModal
             patientName={selPat.name}
-            onSave={async (data)=>{ await addNote(selPat.id, data); setShowAddNote(false); }}
-            onClose={()=>setShowAddNote(false)}
+            onSave={async data => { await addNote(selPat.id, data); setShowAddNote(false); }}
+            onClose={() => setShowAddNote(false)}
           />
         )}
       </AnimatePresence>
@@ -297,7 +322,7 @@ function HamburgerIcon({ open }) {
       {open ? (
         <>
           <line x1="5" y1="5" x2="17" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          <line x1="17" y1="5" x2="5" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="17" y1="5" x2="5"  y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
         </>
       ) : (
         <>

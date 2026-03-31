@@ -94,7 +94,7 @@ function Feedback({ msg, err }) {
   );
 }
 
-export function ProfilePage({ auth, patients, notes, onLogout, onBack, themeMode, onSetTheme }) {
+export function ProfilePage({ auth, patients = [], notes = [], onLogout, onBack, themeMode, onSetTheme }) {
   const doctor     = auth?.doctor || auth || {};
   const initials   = (doctor.name || "DR").split(" ").filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
   const joinedDate = doctor.created_at
