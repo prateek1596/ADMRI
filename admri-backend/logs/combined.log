@@ -142,3 +142,43 @@
 {"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-03-31 13:46:44"}
 {"level":"info","message":"Database connected","timestamp":"2026-03-31 14:03:55"}
 {"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-03-31 14:03:55"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-08 16:35:50"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-08 16:35:50"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-08 16:36:38"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-09T04:30:00.000Z","sessionId":"17a219be-552d-45ae-992d-c216d7c4316b","timestamp":"2026-04-08 16:38:05"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Aarav Sharma","timestamp":"2026-04-08 16:38:09","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Session scheduled","patientId":"f4fffc4f-91a4-461e-bc5b-5df7a51d4a38","scheduledAt":"2026-04-09T04:30:00.000Z","sessionId":"defaef37-ba61-4bfb-8334-310f5d1c9c7f","timestamp":"2026-04-08 16:39:57"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Ananya Krishnan","timestamp":"2026-04-08 16:40:01","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-15 19:27:17"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-15 19:27:17"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-15 19:38:44"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-15T04:30:00.000Z","sessionId":"40e892ee-1cab-4a58-9aa7-119c525f3fc8","timestamp":"2026-04-15 19:40:33"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Aarav Sharma","timestamp":"2026-04-15 19:40:37","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-15 19:43:10"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-15 19:43:10"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-09-16T04:30:00.000Z","sessionId":"c73acae1-e7d8-48a3-8b7d-40a05b1d1cdc","timestamp":"2026-04-15 19:43:47"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-c79581a2fc2sm2109978a12.21 - gsmtp","level":"error","message":"Session reminder email failed","timestamp":"2026-04-15 19:43:50"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-15 19:44:34"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-15 19:44:34"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-16T04:30:00.000Z","sessionId":"c6399c2f-13c3-43af-b8df-9946ba44df38","timestamp":"2026-04-15 19:46:08"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b4782b69cdsm31511195ad.76 - gsmtp","level":"error","message":"Session reminder email failed","timestamp":"2026-04-15 19:46:11"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-16T04:30:00.000Z","sessionId":"975a249e-e849-4be5-ac92-097270ad6315","timestamp":"2026-04-15 19:51:59"}
+{"error":"Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor 98e67ed59e1d1-35fd20d0c3bsm2348856a91.9 - gsmtp","level":"error","message":"Session reminder email failed","timestamp":"2026-04-15 19:52:01"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-16T04:30:00.000Z","sessionId":"f7203710-3c8f-4a25-9f8a-6f21c5e42db9","timestamp":"2026-04-15 19:55:38"}
+{"error":"Invalid login: 534-5.7.9 Application-specific password required. For more information, go to\n534 5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor d2e1a72fcca58-82f67085562sm2605407b3a.24 - gsmtp","level":"error","message":"Session reminder email failed","timestamp":"2026-04-15 19:55:40"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-15 19:56:31"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-15 19:56:31"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-16T04:30:00.000Z","sessionId":"d9ca3f3e-7c7f-4a98-895e-eda5ad919445","timestamp":"2026-04-15 19:57:34"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Aarav Sharma","timestamp":"2026-04-15 19:57:37","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-15 19:59:20"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-15 19:59:20"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-15 19:59:45"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-15 19:59:45"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-16T04:30:00.000Z","sessionId":"bc35be09-32b3-442c-b0fd-c74dd6df412e","timestamp":"2026-04-15 20:00:02"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Aarav Sharma","timestamp":"2026-04-15 20:00:06","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-16T04:30:00.000Z","sessionId":"e79bf6ea-8fab-45c6-9d62-80b1e50ff49c","timestamp":"2026-04-15 20:08:03"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Aarav Sharma","timestamp":"2026-04-15 20:08:07","to":"prateekyadav1596@gmail.com"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-17 18:34:01"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-17 18:34:01"}
+{"doctorId":"23b6abda-afe9-438f-a3ca-d891d71a54a6","email":"verify.admri+1@local.test","level":"info","message":"Doctor registered","timestamp":"2026-04-17 18:35:27"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-17 18:35:39"}

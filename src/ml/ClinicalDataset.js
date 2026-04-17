@@ -400,14 +400,14 @@ function generateADMRIPrimary(n = 3000) {
   return { X, y, name: "ADMRI Primary (PHQ-9/GAD-7/ISI/SCARED Validated Composite)" };
 }
 
-// ── NORMALISE FEATURES to 15D for all models ─────────────────────────────────
+// ── NORMALISE FEATURES to 20D for all models ─────────────────────────────────
 // Pads shorter feature vectors, truncates longer ones
 
-function normalise15(X) {
+function normalise20(X) {
   return X.map(row => {
-    if (row.length === 15) return row;
-    if (row.length < 15) return [...row, ...new Array(15 - row.length).fill(0)];
-    return row.slice(0, 15);
+    if (row.length === 20) return row;
+    if (row.length < 20) return [...row, ...new Array(20 - row.length).fill(0)];
+    return row.slice(0, 20);
   });
 }
 
@@ -420,16 +420,16 @@ export function generateHybridDataset(totalN = 8000) {
   const d4 = generateSDQHybrid(Math.round(totalN * 0.24));
   const d5 = generateADMRIPrimary(Math.round(totalN * 0.16));
 
-  // Normalise all feature vectors to 15D and map all labels to 5-class ADMRI scale
+  // Normalise all feature vectors to 20D and map all labels to 5-class ADMRI scale
   const labelMap4to5 = l => Math.round(l * 4 / 3); // 4-class → 5-class
   const labelMap3to5 = l => [0, 2, 4][l];          // 0→Minimal, 1→Moderate, 2→Severe
   const labelMap2to5 = l => l === 0 ? 0 : 3;       // binary → Minimal or High
 
   const allX = [
-    ...normalise15(d1.X).map((r,i) => ({ r, l: labelMap4to5(d1.y[i]) })),
-    ...normalise15(d2.X).map((r,i) => ({ r, l: labelMap2to5(d2.y[i]) })),
-    ...normalise15(d3.X).map((r,i) => ({ r, l: labelMap3to5(d3.y[i]) })),
-    ...normalise15(d4.X).map((r,i) => ({ r, l: labelMap3to5(d4.y[i]) })),
+    ...normalise20(d1.X).map((r,i) => ({ r, l: labelMap4to5(d1.y[i]) })),
+    ...normalise20(d2.X).map((r,i) => ({ r, l: labelMap2to5(d2.y[i]) })),
+    ...normalise20(d3.X).map((r,i) => ({ r, l: labelMap3to5(d3.y[i]) })),
+    ...normalise20(d4.X).map((r,i) => ({ r, l: labelMap3to5(d4.y[i]) })),
     ...d5.X.map((r,i) => ({ r, l: d5.y[i] })),
   ];
 
@@ -440,13 +440,22 @@ export function generateHybridDataset(totalN = 8000) {
   }
 
   const X = allX.map(({ r }) => r);
-  const y = allX.map(({ l }) => l);
+  const labels = allX.map(({ l }) => l);
+  const ys = labels.map(l => l / 4); // 5-class label mapped to 0..1 regression target
 
-  const classCounts = [0,1,2,3,4].map(c => y.filter(v => v === c).length);
+  const classCounts = [0,1,2,3,4].map(c => labels.filter(v => v === c).length);
 
   return {
+    // Array form for training paths (engine + worker)
+    xs: X,
+    ys,
+    labels,
+
+    // Tensor form for analytics/inspection
     X: tf.tensor2d(X),
-    y: tf.tensor1d(y, "int32"),
+    y: tf.tensor1d(labels, "int32"),
+    yScaled: tf.tensor2d(ys.map(v => [v])),
+
     n: X.length,
     classCounts,
     sources: [d1.name, d2.name, d3.name, d4.name, d5.name],

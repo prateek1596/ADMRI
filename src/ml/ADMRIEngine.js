@@ -19,6 +19,7 @@
 import * as tf from "@tensorflow/tfjs";
 import { CBT_LIBRARY } from "../data/seedData";
 import { generateHybridDataset } from "./ClinicalDataset";
+import { runQuickDatasetValidation } from "./quickValidateDataset";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const SAVE_KEYS = {
@@ -28,7 +29,6 @@ const SAVE_KEYS = {
   fusionnet: "indexeddb://admri-fusionnet-v3",
 };
 
-const N_FEATURES    = 20;
 const N_FUSION_IN   = 23; // 20 features + 3 sub-model predictions
 const TRAIN_SAMPLES = 6000;
 const EPOCHS        = 60;
@@ -277,11 +277,21 @@ export class ADMRIMLEngine {
   // ── Training ───────────────────────────────────────────────────────────────
   async train(onProgress) {
     console.log("[ADMRI] Generating clinical dataset...");
-    const { xs, ys } = generateHybridDataset(TRAIN_SAMPLES);
+    const preflight = runQuickDatasetValidation(TRAIN_SAMPLES);
+    if (preflight.warnings.length) {
+      console.warn("[ADMRI] Dataset validation warnings:", preflight.warnings.join(" | "));
+    }
+    console.log("[ADMRI] Dataset class counts:", preflight.classCounts);
+
+    const dataset = generateHybridDataset(TRAIN_SAMPLES);
+    const { xs, ys, classCounts } = dataset;
+    if (classCounts.length !== 5) {
+      throw new Error("Hybrid dataset class count vector must contain exactly 5 classes.");
+    }
 
     // Prepare tensors
     const xAll = tf.tensor2d(xs);
-    const yAll = tf.tensor2d(ys);
+    const yAll = tf.tensor2d(ys.map(v => [v]));
 
     // ── Train Model 1: DepNet ────────────────────────────────────────────────
     onProgress && onProgress("depnet", 0, 0, {});

@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const express     = require('express');
 const helmet      = require('helmet');
 const cors        = require('cors');
@@ -6,7 +7,6 @@ const compression = require('compression');
 const morgan      = require('morgan');
 const rateLimit   = require('express-rate-limit');
 const fs          = require('fs');
-const path        = require('path');
 
 const logger     = require('./config/logger');
 const routes     = require('./routes/index');

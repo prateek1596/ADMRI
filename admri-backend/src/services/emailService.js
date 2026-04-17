@@ -134,6 +134,10 @@ async function sendSessionReminder({
     ? `[ADMRI] Session confirmed — ${patient_name} on ${new Date(scheduled_at).toLocaleDateString('en-IN')}`
     : `[ADMRI REMINDER] Session tomorrow — ${patient_name}`;
 
+  const doctorLabel = /^dr\.?\s+/i.test((doctor_name || '').trim())
+    ? doctor_name.trim()
+    : `Dr. ${doctor_name}`;
+
   const html = `
     <!DOCTYPE html>
     <html>
@@ -146,7 +150,7 @@ async function sendSessionReminder({
           </div>
         </div>
         <div style="padding:28px">
-          <p style="color:#37474F;font-size:15px;margin-top:0">Dear Dr. ${doctor_name},</p>
+          <p style="color:#37474F;font-size:15px;margin-top:0">Dear ${doctorLabel},</p>
           <p style="color:#37474F;font-size:15px">
             ${isConfirmation
               ? `Your session with <strong>${patient_name}</strong> has been scheduled.`
