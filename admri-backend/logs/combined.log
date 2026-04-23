@@ -182,3 +182,10 @@
 {"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-17 18:34:01"}
 {"doctorId":"23b6abda-afe9-438f-a3ca-d891d71a54a6","email":"verify.admri+1@local.test","level":"info","message":"Doctor registered","timestamp":"2026-04-17 18:35:27"}
 {"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-17 18:35:39"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-21 21:47:44"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-21 21:47:44"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-21 21:48:33"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-21 21:48:55"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-23 22:10:34"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-23 22:10:34"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-23 22:11:09"}
