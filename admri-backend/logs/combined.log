@@ -200,3 +200,8 @@
 {"level":"info","message":"Database connected","timestamp":"2026-04-23 22:24:50"}
 {"level":"info","message":"Database connected","timestamp":"2026-04-23 22:26:28"}
 {"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-23 22:26:28"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-23 22:27:35"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-23 22:27:35"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-23 22:35:10"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-23 22:35:10"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-23 22:35:47"}
