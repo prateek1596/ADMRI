@@ -3,10 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "prestart": "kill-port 3000 5000 || exit 0",
     "start": "concurrently \"npm run start --prefix admri-backend\" \"npm run start --prefix admri-frontend\"",
     "dev": "concurrently \"npm run dev --prefix admri-backend\" \"npm run start --prefix admri-frontend\""
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "kill-port": "^2.0.1"
   }
 }
