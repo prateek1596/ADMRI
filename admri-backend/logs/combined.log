@@ -211,3 +211,10 @@
 {"level":"info","message":"Database connected","timestamp":"2026-04-28 22:41:17"}
 {"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-28 22:41:17"}
 {"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-28 22:42:31"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-29 08:55:42"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-29 08:55:42"}
+{"doctorId":"a9a4abda-b7fe-4d6a-a308-518646ecd504","level":"info","message":"Doctor logged in","timestamp":"2026-04-29 08:56:05"}
+{"level":"info","message":"Database connected","timestamp":"2026-04-29 11:37:52"}
+{"level":"info","message":"ADMRI API running on port 5000","timestamp":"2026-04-29 11:37:52"}
+{"level":"info","message":"Session scheduled","patientId":"ab66e262-9507-427c-9e6a-454b63627fc2","scheduledAt":"2026-04-29T04:30:00.000Z","sessionId":"45eebaa3-42a5-4a21-beec-74038adf203d","timestamp":"2026-04-29 12:01:24"}
+{"isConfirmation":true,"level":"info","message":"Session reminder sent","patient":"Aarav Sharma","timestamp":"2026-04-29 12:01:27","to":"prateekyadav1596@gmail.com"}
